@@ -9,7 +9,7 @@ public class CharacterInput : MonoBehaviour
 
     private void Update()
     {
-        InputX = Input.GetAxis("Horizontal");
-        InputY = Input.GetAxis("Vertical");
+        InputX = Input.GetAxisRaw("Horizontal");
+        InputY = Input.GetAxisRaw("Vertical");
     }
 }
