@@ -9,11 +9,20 @@ public class Movement : MonoBehaviour
     private Vector2 MoveVec;
     private Vector2 NomalVec;
     private Vector2 MovePosition;
+    private Status _status;
+
+    private float _speed;
 
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
         _input = GetComponent<CharacterInput>();
+        _status = GetComponent<Status>();
+    }
+
+    private void Start()
+    {
+        _speed = _status.GetSpeed();
     }
 
     private void Update()
@@ -25,6 +34,7 @@ public class Movement : MonoBehaviour
     private void FixedUpdate()
     {
         NomalVec = MoveVec.normalized;
-        _rigidbody.MovePosition(_rigidbody.position + NomalVec);
+        MovePosition = _speed * Time.fixedDeltaTime * MoveVec;
+        _rigidbody.MovePosition(_rigidbody.position + MovePosition);
     }
 }
