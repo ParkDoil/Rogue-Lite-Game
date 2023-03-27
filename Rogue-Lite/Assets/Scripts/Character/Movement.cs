@@ -6,10 +6,15 @@ public class Movement : MonoBehaviour
 {
     private Rigidbody2D _rigidbody;
     private CharacterInput _input;
+    private Status _status;
+    private SpriteRenderer _renderer;
+
     private Vector2 MoveVec;
     private Vector2 NomalVec;
     private Vector2 MovePosition;
-    private Status _status;
+
+    public float VectorX { get { return MoveVec.x; } }
+    public float VectorY { get { return MoveVec.y; } }
 
     private float _speed;
 
@@ -18,6 +23,7 @@ public class Movement : MonoBehaviour
         _rigidbody = GetComponent<Rigidbody2D>();
         _input = GetComponent<CharacterInput>();
         _status = GetComponent<Status>();
+        _renderer = GetComponent<SpriteRenderer>();
     }
 
     private void Start()
@@ -36,5 +42,13 @@ public class Movement : MonoBehaviour
         NomalVec = MoveVec.normalized;
         MovePosition = _speed * Time.fixedDeltaTime * MoveVec;
         _rigidbody.MovePosition(_rigidbody.position + MovePosition);
+    }
+
+    private void LateUpdate()
+    {
+        if(MoveVec.x != 0)
+        {
+            _renderer.flipX = MoveVec.x < 0;
+        }
     }
 }
