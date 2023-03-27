@@ -29,6 +29,7 @@ public class Movement : MonoBehaviour
     private void Start()
     {
         _speed = _status.GetSpeed();
+        GameManager.instance.GetPlayerObject(this.gameObject);
     }
 
     private void Update()
