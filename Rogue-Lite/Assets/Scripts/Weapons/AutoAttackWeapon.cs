@@ -13,9 +13,4 @@ public class AutoAttackWeapon : Weapons
         WeaponDelay = weaponDelay;
         TargetCount = targetCount;
     }
-
-    private void Start()
-    {
-        SetWeaponData(1, 5, 1, 1.0f, 1);
-    }
 }

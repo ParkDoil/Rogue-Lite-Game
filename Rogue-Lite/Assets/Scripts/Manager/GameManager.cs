@@ -7,6 +7,8 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
 
     [field: SerializeField]
+    public ObjectPoolManager PoolManager { get; private set; }
+
     public GameObject _player { get; private set; }
 
     private void Awake()

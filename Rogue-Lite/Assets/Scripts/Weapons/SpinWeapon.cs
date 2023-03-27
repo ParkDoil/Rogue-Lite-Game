@@ -11,9 +11,4 @@ public class SpinWeapon : Weapons
         base.SetWeaponData(id, damage, weaponLevel);
         WeaponCount = weaponCount;
     }
-
-    private void Start()
-    {
-        SetWeaponData(0, 5, 1, 1);
-    }
 }

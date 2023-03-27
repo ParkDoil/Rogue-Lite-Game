@@ -6,15 +6,34 @@ public class ObjectPoolManager : MonoBehaviour
 {
     [SerializeField]
     private GameObject[] _prefabs;
-    private List<GameObject>[] _objectPools;
+    [SerializeField]
+    private Queue<GameObject>[] _objectPools;
 
     private void Awake()
     {
-        _objectPools = new List<GameObject>[_prefabs.Length];
+        _objectPools = new Queue<GameObject>[_prefabs.Length];
 
         for (int i = 0; i < _objectPools.Length; ++i)
         {
-            _objectPools[i] = new List<GameObject>();
+            _objectPools[i] = new Queue<GameObject>();
+        }
+    }
+
+    private void OnEnable()
+    {
+        Init();
+    }
+
+    private void Init()
+    {
+        for (int i = 0; i < _objectPools.Length; ++i)
+        {
+            for (int j = 0; j < 100; ++j)
+            {
+                GameObject gameObj = Instantiate(_prefabs[i]);
+                gameObj.SetActive(false);
+                _objectPools[i].Enqueue(gameObj);
+            }
         }
     }
 
@@ -22,20 +41,14 @@ public class ObjectPoolManager : MonoBehaviour
     {
         GameObject _selectObject = null;
 
-        foreach (GameObject item in _objectPools[index])
-        {
-            if(!item.activeSelf)
-            {
-                _selectObject = item;
-                _selectObject.SetActive(true);
-                break;
-            }
-        }
+        _selectObject = _objectPools[index].Dequeue();
+        _selectObject.SetActive(true);
 
         if(!_selectObject)
         {
-            _selectObject = Instantiate(_prefabs[index], transform);
-            _objectPools[index].Add(_selectObject);
+            _selectObject = Instantiate(_prefabs[index]);
+            _objectPools[index].Enqueue(_selectObject);
+            Get(index);
         }
 
         return _selectObject;
