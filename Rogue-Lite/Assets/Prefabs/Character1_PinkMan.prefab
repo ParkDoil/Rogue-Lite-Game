@@ -105,7 +105,7 @@ MonoBehaviour:
   _prefabID: 0
   _spinWeaponID: 0
   _spinWeaponDamage: 10
-  _spinWeaponLevel: 1
+  <SpinWeaponLevel>k__BackingField: 1
   _spinWeaponCount: 1
   <SpinWeaponTotalDamage>k__BackingField: 0
 --- !u!1 &5831188122279814084

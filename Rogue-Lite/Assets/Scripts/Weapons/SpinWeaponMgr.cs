@@ -15,8 +15,8 @@ public class SpinWeaponMgr : MonoBehaviour
     private int _spinWeaponID;
     [SerializeField]
     private int _spinWeaponDamage;
-    [SerializeField]
-    private int _spinWeaponLevel;
+    [field: SerializeField]
+    public int SpinWeaponLevel { get; private set; }
     [SerializeField]
     private int _spinWeaponCount;
     [field:SerializeField]
@@ -54,20 +54,20 @@ public class SpinWeaponMgr : MonoBehaviour
 
     public void LevelUp()
     {
-        if(_spinWeaponLevel >= 10)
+        if(SpinWeaponLevel >= 10)
         {
             return;
         }
 
-        ++_spinWeaponLevel;
-        if (_spinWeaponLevel % 2 == 1)
+        ++SpinWeaponLevel;
+        if (SpinWeaponLevel % 2 == 1)
         {
             ++_spinWeaponCount;
             PositionSet();
         }
         else
         {
-            if(_spinWeaponLevel != 10)
+            if(SpinWeaponLevel != 10)
             {
                 ++_spinWeaponDamage;
             }
