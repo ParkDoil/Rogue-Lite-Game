@@ -12,7 +12,7 @@ public class Status : MonoBehaviour
         return _status.Speed;
     }
 
-    public float GetDamage()
+    public int GetDamage()
     {
         return _status.AttackDamage;
     }

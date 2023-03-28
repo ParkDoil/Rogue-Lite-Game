@@ -8,8 +8,8 @@ public class CharacterStatus : ScriptableObject
     public float Speed { get { return _speed; } }
 
     [SerializeField] // 공격력
-    private float _attackDamage;
-    public float AttackDamage { get { return _attackDamage; } }
+    private int _attackDamage;
+    public int AttackDamage { get { return _attackDamage; } }
 
     [SerializeField] // 체력
     private int _hp;

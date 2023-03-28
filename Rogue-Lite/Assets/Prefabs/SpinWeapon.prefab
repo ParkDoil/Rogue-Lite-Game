@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 8435708105165108017}
   - component: {fileID: 7176204437862549729}
   - component: {fileID: 4230586773604063837}
-  - component: {fileID: 6638038792201777278}
   m_Layer: 0
   m_Name: SpinWeapon
   m_TagString: Weapon
@@ -102,15 +101,3 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.2375
---- !u!114 &6638038792201777278
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2995143265738071492}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af85f534cb4f01b48b99f8f0b6b90167, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
