@@ -2,15 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpinWeaponMgr : MonoBehaviour
+public class WeaponMgr : MonoBehaviour
 {
-    #region Spin Weapon Data
-    [SerializeField]
-    private int _prefabID;
-    private int _count;
+    private int _weaponID;
+    private float _elapsedTime;
 
-    private float _spinSpeed;
+    #region Spin Weapon Data
     [Header("회전공격무기 Data")]
+    [SerializeField]
+    private int _spinWeaponPrefabID;
+    private float _spinSpeed;
     [SerializeField]
     private int _spinWeaponID;
     [SerializeField]
@@ -20,6 +21,24 @@ public class SpinWeaponMgr : MonoBehaviour
     [SerializeField]
     private int _spinWeaponCount;
     public int SpinWeaponTotalDamage { get; private set; }
+    #endregion
+
+    #region Spin Weapon Data
+    [Header("자동공격무기 Data")]
+    [SerializeField]
+    private int _autoWeaponPrefabID;
+    private float _fireSpeed;
+    [SerializeField]
+    private int _autoWeaponID;
+    [SerializeField]
+    private int _autoWeaponDamage;
+    [field: SerializeField]
+    public int AutoWeaponLevel { get; private set; }
+    [SerializeField]
+    private float _autoWeaponCooldown;
+    [SerializeField]
+    private int _autoWeaponTargetCount;
+    public int AutoWeaponTotalDamage { get; private set; }
     #endregion
 
     private Status _status;
@@ -36,7 +55,23 @@ public class SpinWeaponMgr : MonoBehaviour
 
     private void Update()
     {
-        transform.Rotate(Vector3.back * _spinSpeed * Time.deltaTime);
+        switch(_weaponID)
+        {
+            case 0:
+                transform.Rotate(Vector3.back * _spinSpeed * Time.deltaTime);
+                break;
+            default:
+                _elapsedTime += Time.deltaTime;
+
+                if(_elapsedTime > _autoWeaponCooldown)
+                {
+                    _elapsedTime = 0f;
+                    AutoFire();
+                }
+                break;
+
+
+        }
 
         if (Input.GetButtonDown("Jump"))
         {
@@ -96,7 +131,7 @@ public class SpinWeaponMgr : MonoBehaviour
             }
             else
             {
-                spinWeapon = GameManager.instance.PoolManager.Get(_prefabID).transform;
+                spinWeapon = GameManager.instance.PoolManager.Get(_spinWeaponPrefabID).transform;
                 spinWeapon.parent = transform;
             }
 
@@ -112,5 +147,10 @@ public class SpinWeaponMgr : MonoBehaviour
     private void TotalDamageSet()
     {
         SpinWeaponTotalDamage = _spinWeaponDamage + _status.GetDamage();
+    }
+
+    private void AutoFire()
+    {
+
     }
 }
