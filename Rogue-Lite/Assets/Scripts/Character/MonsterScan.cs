@@ -9,12 +9,13 @@ public class MonsterScan : MonoBehaviour
     [SerializeField]
     private LayerMask _target;
     private RaycastHit2D[] _hits;
-    private Transform _nearTarget;
+    public Transform NearTarget { get; private set; }
 
     private void FixedUpdate()
     {
         _hits = Physics2D.CircleCastAll(transform.position, _scanRange, Vector2.zero, 0, _target);
-        _nearTarget = GetNearTarget();
+
+        NearTarget = GetNearTarget();
     }
 
     private Transform GetNearTarget()

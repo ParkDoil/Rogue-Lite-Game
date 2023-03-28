@@ -8,6 +8,7 @@ public class Movement : MonoBehaviour
     private CharacterInput _input;
     private Status _status;
     private SpriteRenderer _renderer;
+    public MonsterScan Scanner { get; private set; }
 
     private Vector2 MoveVec;
     private Vector2 NomalVec;
@@ -24,6 +25,7 @@ public class Movement : MonoBehaviour
         _input = GetComponent<CharacterInput>();
         _status = GetComponent<Status>();
         _renderer = GetComponent<SpriteRenderer>();
+        Scanner = GetComponent<MonsterScan>();
     }
 
     private void Start()

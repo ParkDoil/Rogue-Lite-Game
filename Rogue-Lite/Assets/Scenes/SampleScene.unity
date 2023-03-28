@@ -249,6 +249,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _prefabs:
   - {fileID: 2995143265738071492, guid: 67f147c1c0b796b46ad75d407a952783, type: 3}
+  - {fileID: 551376387388517885, guid: 883818c589ec42244919f6f625d215cc, type: 3}
 --- !u!4 &28686149
 Transform:
   m_ObjectHideFlags: 0
@@ -17692,6 +17693,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1569843054, guid: df8f7b16bec2a5a4db73512f466b3f2f, type: 3}
+      propertyPath: m_Name
+      value: Weapons
+      objectReference: {fileID: 0}
     - target: {fileID: 5831188122279814080, guid: df8f7b16bec2a5a4db73512f466b3f2f, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -17742,24 +17747,3 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: df8f7b16bec2a5a4db73512f466b3f2f, type: 3}
---- !u!1 &5831188121999766776 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5831188122279814084, guid: df8f7b16bec2a5a4db73512f466b3f2f, type: 3}
-  m_PrefabInstance: {fileID: 5831188121999766775}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &5831188121999766777
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5831188121999766776}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 36ce259411dc79345ad49f3f57d74e05, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _scanRange: 7
-  _target:
-    serializedVersion: 2
-    m_Bits: 64

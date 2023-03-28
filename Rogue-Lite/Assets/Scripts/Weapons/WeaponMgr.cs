@@ -7,6 +7,8 @@ public class WeaponMgr : MonoBehaviour
     private int _weaponID;
     private float _elapsedTime;
 
+    private Movement _player;
+
     #region Spin Weapon Data
     [Header("회전공격무기 Data")]
     [SerializeField]
@@ -46,6 +48,7 @@ public class WeaponMgr : MonoBehaviour
     private void Awake()
     {
         _status = GetComponentInParent<Status>();
+        _player = GetComponentInParent<Movement>();
     }
 
     private void Start()
@@ -69,13 +72,11 @@ public class WeaponMgr : MonoBehaviour
                     AutoFire();
                 }
                 break;
-
-
         }
 
         if (Input.GetButtonDown("Jump"))
         {
-            LevelUp();
+
         }
     }
 
@@ -86,7 +87,9 @@ public class WeaponMgr : MonoBehaviour
         TotalDamageSet();
     }
 
-    public void LevelUp()
+    // 무기 레벨업 구현부
+    #region LevelUP
+    public void SpinWeaponLevelUp()
     {
         if(SpinWeaponLevel >= 10)
         {
@@ -114,6 +117,30 @@ public class WeaponMgr : MonoBehaviour
         }
     }
 
+    public void AutoWeaponLevelUp()
+    {
+        if (AutoWeaponLevel >= 10)
+        {
+            return;
+        }
+
+        ++AutoWeaponLevel;
+        if (AutoWeaponLevel % 2 == 1)
+        {
+            _autoWeaponCooldown -= 0.15f;
+        }
+        else
+        {
+            if (SpinWeaponLevel != 10)
+            {
+                ++_autoWeaponDamage;
+            }
+            TotalDamageSet();
+        }
+    }
+    #endregion
+
+    // 회전무기 위치 배치
     private void PositionSet()
     {
         for (int i = 0; i < _spinWeaponCount; ++i)
@@ -144,13 +171,22 @@ public class WeaponMgr : MonoBehaviour
         }
     }
 
+    // 최종 데미지 세팅
     private void TotalDamageSet()
     {
         SpinWeaponTotalDamage = _spinWeaponDamage + _status.GetDamage();
+        AutoWeaponTotalDamage = _autoWeaponDamage + _status.GetDamage();
     }
 
+    // 자동 공격 무기 발사 구현부
     private void AutoFire()
     {
+        if(!_player.Scanner.NearTarget)
+        {
+            return;
+        }
 
+        Transform autoBullet = GameManager.instance.PoolManager.Get(_autoWeaponPrefabID).transform;
+        autoBullet.position = transform.position;
     }
 }
