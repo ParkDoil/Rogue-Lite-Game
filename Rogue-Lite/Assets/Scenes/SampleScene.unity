@@ -17692,10 +17692,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1569843056, guid: df8f7b16bec2a5a4db73512f466b3f2f, type: 3}
-      propertyPath: <SpinWeaponLevel>k__BackingField
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5831188122279814080, guid: df8f7b16bec2a5a4db73512f466b3f2f, type: 3}
       propertyPath: m_RootOrder
       value: 3

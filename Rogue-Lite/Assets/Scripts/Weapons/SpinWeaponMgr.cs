@@ -19,7 +19,6 @@ public class SpinWeaponMgr : MonoBehaviour
     public int SpinWeaponLevel { get; private set; }
     [SerializeField]
     private int _spinWeaponCount;
-    [field:SerializeField]
     public int SpinWeaponTotalDamage { get; private set; }
     #endregion
 
